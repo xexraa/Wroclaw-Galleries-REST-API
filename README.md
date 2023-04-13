@@ -1,6 +1,13 @@
 # Wroclaw-Galleries-REST-API
 
-This is a RESTful API developed with Flask and SQLAlchemy. It allows users to register, and they will receive a welcome email upon successful registration. Emails are sent via a Queue using "rq" and "redis". The project also fully utilizes flask_jwt_extended for token-based authentication. The required environment variables can be found in the .env file, which includes the DATABASE_URL, MAILGUN_API_KEY, MAILGUN_DOMAIN, REDIS_URL, and JWT_SECRET_KEY. Swagger documentation for the API can be found at /swagger-ui.
+This is a RESTful API developed with Flask and SQLAlchemy. It allows users to register, and they will receive a welcome email upon successful registration. Emails are sent via a Queue using "rq" and "redis". The project also fully utilizes flask_jwt_extended for token-based authentication. The required environment variables can be found in the .env file, which includes the:
+- DATABASE_URL
+- MAILGUN_API_KEY
+- MAILGUN_DOMAIN
+- REDIS_URL
+- JWT_SECRET_KEY 
+
+Swagger documentation for the API can be found at /swagger-ui.
 
 ## Getting Started
 
@@ -12,9 +19,9 @@ You will also need to set the necessary environment variables. You can find a sa
 
 To run the API, execute:
 
-**flask db init**
-**flask migrate**
-**flask run**
+- **flask db init**
+- **flask migrate**
+- **flask run**
 
 This will start the Flask development server, and you can access the API at http://localhost:5000.
 
@@ -31,12 +38,12 @@ This will run the container and map the container's port 5000 to your local mach
 
 Additionally, you can run a second container for sending emails using the following commands:
 
-**docker build -t wroclaw-galleries-rest-api-email .**
-**docker run -w /app wroclaw-galleries-rest-api-email sh -c "rq worker -u REDIS_URL emails"**
+- **docker build -t wroclaw-galleries-rest-api-email .**
+- **docker run -w /app wroclaw-galleries-rest-api-email sh -c "rq worker -u REDIS_URL emails"**
 
 This will build the Docker image with the name "wroclaw-galleries-rest-api-email". Then, it will run the container and execute the "rq worker" command to process the email queue. You will need to replace REDIS_URL with the appropriate Redis URL for your environment.
-Link example:
-__rediss://example_example@frankfurt-redis.render.com:1111__
+
+Link example: __rediss://example_example@frankfurt-redis.render.com:1111__
 
 ## Authentication
 This API utilizes token-based authentication using flask_jwt_extended. To obtain a token, send a POST request to the /auth/login endpoint with valid credentials. The API will respond with a JWT token that can be used to access protected endpoints.
