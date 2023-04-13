@@ -1,0 +1,10 @@
+.env
+.venv
+.vscode
+__pycache__
+data.db
+*.pyc
+.DS_Store
+zprzykladapi.txt
+CONTRIBUTING copy.md
+screens
